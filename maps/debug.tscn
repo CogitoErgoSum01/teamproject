@@ -1,6 +1,19 @@
 [gd_scene format=3 uid="uid://c3rhgj1nqie1c"]
 
 [ext_resource type="Texture2D" uid="uid://c1gx7ya1s75qv" path="res://assets/prototype textures/Dark/texture_09.png" id="1_gynrd"]
+[ext_resource type="PackedScene" uid="uid://dj8i32eteyqga" path="res://scenes/player/player.tscn" id="2_8jrgs"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8jrgs"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_5etxy"]
+sky_material = SubResource("ProceduralSkyMaterial_8jrgs")
+
+[sub_resource type="Environment" id="Environment_l8g1f"]
+background_mode = 2
+sky = SubResource("Sky_5etxy")
+glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uscbp"]
 vertex_color_use_as_albedo = true
@@ -10,6 +23,13 @@ uv1_triplanar = true
 [node name="debug" type="Node3D" unique_id=218068186]
 metadata/_edit_lock_ = true
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2073025992]
+environment = SubResource("Environment_l8g1f")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=710809154]
+transform = Transform3D(-0.8660254, -0.4330128, 0.25000006, 0.5000001, -0.75, 0.43301257, 7.261565e-08, 0.49999997, 0.86602545, 0, 0, 0)
+shadow_enabled = true
+
 [node name="obstacles" type="Node3D" parent="." unique_id=1053544098]
 metadata/_edit_lock_ = true
 
@@ -18,3 +38,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(500, 1, 500)
 material = SubResource("StandardMaterial3D_uscbp")
+
+[node name="player" parent="." unique_id=313666329 instance=ExtResource("2_8jrgs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
