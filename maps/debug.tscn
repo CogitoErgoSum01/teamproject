@@ -1,4 +1,20 @@
 [gd_scene format=3 uid="uid://c3rhgj1nqie1c"]
 
+[ext_resource type="Texture2D" uid="uid://c1gx7ya1s75qv" path="res://assets/prototype textures/Dark/texture_09.png" id="1_gynrd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uscbp"]
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_gynrd")
+uv1_triplanar = true
+
 [node name="debug" type="Node3D" unique_id=218068186]
 metadata/_edit_lock_ = true
+
+[node name="obstacles" type="Node3D" parent="." unique_id=1053544098]
+metadata/_edit_lock_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="obstacles" unique_id=1890868725]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(500, 1, 500)
+material = SubResource("StandardMaterial3D_uscbp")
