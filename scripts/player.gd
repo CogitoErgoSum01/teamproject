@@ -1,5 +1,4 @@
-extends CharacterBody3D
-
+extends CharacterBody3D #DO NOT CHANGE ANYTHING OR THE CODE MIGHT BREAK
 
 var speed = 5.0
 var jump_vel = 20.0
