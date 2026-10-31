@@ -5,9 +5,13 @@ var speed = 5.0
 var jump_vel = 20.0
 var gravity = 90.0
 
+@export var camera:Camera3D
+
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	handle_aim()
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
@@ -23,5 +27,19 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
-
+	
 	move_and_slide()
+
+func handle_aim():
+	var mouse_pos = get_viewport().get_mouse_position()
+	var from = camera.project_ray_origin(mouse_pos)
+	var cam_dir = camera.project_ray_normal(mouse_pos)
+	
+	var plane := Plane(Vector3.UP , global_position.y)
+	var hit = plane.intersects_ray(from , cam_dir)
+	var to_mouse : Vector3 = hit - global_position
+	to_mouse.y = 0.0
+	if to_mouse.length() < 0.001:
+		return
+	
+	$shooting_ray.rotation = Vector3(0.0 , atan2(-to_mouse.x, -to_mouse.z),0.0)

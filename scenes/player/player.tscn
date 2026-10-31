@@ -10,15 +10,24 @@
 albedo_color = Color(0.86450624, 0.00064148667, 0.8726314, 1)
 billboard_mode = 1
 
-[node name="player" type="CharacterBody3D" unique_id=313666329]
+[node name="player" type="CharacterBody3D" unique_id=313666329 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_8afob")
+camera = NodePath("Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=986046210]
 shape = SubResource("SphereShape3D_8afob")
+debug_color = Color(0.99139446, 0, 0.25998026, 1)
+metadata/_edit_lock_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=791609896]
 mesh = SubResource("QuadMesh_g4v7s")
 surface_material_override/0 = SubResource("StandardMaterial3D_yf5fn")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2026227053]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.70710677, 0, -0.70710677, 0.7071068, 0, 3, 3)
+transform = Transform3D(1, 0, 0, 0, 0.6427877, 0.76604444, 0, -0.76604444, 0.6427877, 0, 3, 3)
+metadata/_edit_lock_ = true
+
+[node name="shooting_ray" type="RayCast3D" parent="." unique_id=964060872]
+target_position = Vector3(0, 0, -10)
+debug_shape_custom_color = Color(0, 1, 0, 1)
+metadata/_edit_lock_ = true
