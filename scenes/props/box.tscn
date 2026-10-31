@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bc7o5fvyjvmvs"]
+
+[ext_resource type="Texture2D" uid="uid://kypc1tnceheg" path="res://assets/prototype textures/Orange/texture_10.png" id="1_g4j6v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_g4j6v")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_yf5fn")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="box" type="RigidBody3D" unique_id=524062015]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=105814985]
+mesh = SubResource("BoxMesh_g4v7s")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=658903259]
+shape = SubResource("BoxShape3D_g4v7s")
+metadata/_edit_lock_ = true

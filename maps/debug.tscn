@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c1gx7ya1s75qv" path="res://assets/prototype textures/Dark/texture_09.png" id="1_gynrd"]
 [ext_resource type="PackedScene" uid="uid://dj8i32eteyqga" path="res://scenes/player/player.tscn" id="2_8jrgs"]
+[ext_resource type="PackedScene" uid="uid://bc7o5fvyjvmvs" path="res://scenes/props/box.tscn" id="3_5etxy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8jrgs"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -42,3 +43,6 @@ metadata/_edit_lock_ = true
 
 [node name="player" parent="." unique_id=313666329 instance=ExtResource("2_8jrgs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="box" parent="." unique_id=524062015 instance=ExtResource("3_5etxy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
