@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://c3rhgj1nqie1c"]
+
+[node name="debug" type="Node3D" unique_id=218068186]
+metadata/_edit_lock_ = true
