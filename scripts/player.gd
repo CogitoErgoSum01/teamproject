@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func handle_aim():
+func handle_aim(): # FOR ROTATING THE RAY CAST TOWARDS THE MOUSE POINTER
 	var mouse_pos = get_viewport().get_mouse_position()
 	var from = camera.project_ray_origin(mouse_pos)
 	var cam_dir = camera.project_ray_normal(mouse_pos)

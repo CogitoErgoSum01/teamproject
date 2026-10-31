@@ -1,14 +1,24 @@
 [gd_scene format=3 uid="uid://dj8i32eteyqga"]
 
 [ext_resource type="Script" uid="uid://bhuhviflv02kq" path="res://scripts/player.gd" id="1_8afob"]
+[ext_resource type="Texture2D" uid="uid://cf6j0jhwilyss" path="res://assets/player/prototype_player.png" id="2_dovo2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8afob"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
-albedo_color = Color(0.86450624, 0.00064148667, 0.8726314, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dovo2"]
+transparency = 1
+albedo_texture = ExtResource("2_dovo2")
 billboard_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmlin"]
+transparency = 1
+albedo_texture = ExtResource("2_dovo2")
+shadow_to_opacity = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_gmlin")
+size = Vector2(2, 2)
 
 [node name="player" type="CharacterBody3D" unique_id=313666329 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_8afob")
@@ -20,8 +30,8 @@ debug_color = Color(0.99139446, 0, 0.25998026, 1)
 metadata/_edit_lock_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=791609896]
+material_override = SubResource("StandardMaterial3D_dovo2")
 mesh = SubResource("QuadMesh_g4v7s")
-surface_material_override/0 = SubResource("StandardMaterial3D_yf5fn")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2026227053]
 transform = Transform3D(1, 0, 0, 0, 0.6427877, 0.76604444, 0, -0.76604444, 0.6427877, 0, 3, 3)
