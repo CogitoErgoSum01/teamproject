@@ -1,10 +1,18 @@
 extends CharacterBody3D #DO NOT CHANGE ANYTHING OR THE CODE MIGHT BREAK
 
 var speed = 5.0
-var jump_vel = 20.0
 var gravity = 90.0
 
 @export var camera:Camera3D
+
+@onready var ray = $shooting_ray
+
+
+func _input(_event: InputEvent) -> void:
+	if Input.is_action_pressed("shoot"):
+		print("pressed shoot")
+		shoot()
+
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
@@ -13,10 +21,6 @@ func _physics_process(delta: float) -> void:
 	handle_aim()
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_vel
 	
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -40,5 +44,18 @@ func handle_aim(): # FOR ROTATING THE RAY CAST TOWARDS THE MOUSE POINTER
 	to_mouse.y = 0.0
 	if to_mouse.length() < 0.001:
 		return
-	
-	$shooting_ray.rotation = Vector3(0.0 , atan2(-to_mouse.x, -to_mouse.z),0.0)
+	ray.rotation = Vector3(0.0 , atan2(-to_mouse.x, -to_mouse.z),0.0)
+
+
+func shoot(): #FOR SHOOTING ENEMIES AND RIGIDBODIES
+	ray.force_raycast_update()
+	if ray.is_colliding():
+		var collider = ray.get_collider()
+		var collider_point = ray.get_collision_point()
+		var dir = -global_transform.basis.z
+		
+		if collider.has_method("hit"):
+			collider.hit()
+		
+		if collider is RigidBody3D:
+			collider.apply_impulse(dir * 5.0 , collider_point - collider.global_position)

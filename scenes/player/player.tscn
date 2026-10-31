@@ -38,6 +38,6 @@ transform = Transform3D(1, 0, 0, 0, 0.6427877, 0.76604444, 0, -0.76604444, 0.642
 metadata/_edit_lock_ = true
 
 [node name="shooting_ray" type="RayCast3D" parent="." unique_id=964060872]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 target_position = Vector3(0, 0, -10)
 debug_shape_custom_color = Color(0, 1, 0, 1)
-metadata/_edit_lock_ = true
