@@ -52,7 +52,7 @@ func shoot(): #FOR SHOOTING ENEMIES AND RIGIDBODIES
 	if ray.is_colliding():
 		var collider = ray.get_collider()
 		var collider_point = ray.get_collision_point()
-		var dir = -global_transform.basis.z
+		var dir = (collider_point - ray.global_position).normalized()
 		
 		if collider.has_method("hit"):
 			collider.hit()
