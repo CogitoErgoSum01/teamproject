@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhuhviflv02kq" path="res://scripts/player.gd" id="1_8afob"]
 [ext_resource type="Texture2D" uid="uid://cf6j0jhwilyss" path="res://assets/player/prototype_player.png" id="2_dovo2"]
+[ext_resource type="Script" uid="uid://cxdhfsknx1lhy" path="res://scenes/player/hud.gd" id="3_gmlin"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8afob"]
 
@@ -41,3 +42,41 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 target_position = Vector3(0, 0, -10)
 debug_shape_custom_color = Color(0, 1, 0, 1)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=626958008]
+script = ExtResource("3_gmlin")
+
+[node name="pause_menu" type="VBoxContainer" parent="HUD" unique_id=1942910489]
+process_mode = 2
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="resume" type="Button" parent="HUD/pause_menu" unique_id=1750824691]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "RESUME"
+
+[node name="restart" type="Button" parent="HUD/pause_menu" unique_id=1092336405]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "RESTART"
+
+[node name="quit" type="Button" parent="HUD/pause_menu" unique_id=723451013]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "QUIT"
+
+[connection signal="pressed" from="HUD/pause_menu/resume" to="HUD" method="_on_resume_pressed"]
+[connection signal="pressed" from="HUD/pause_menu/restart" to="HUD" method="_on_restart_pressed"]
+[connection signal="pressed" from="HUD/pause_menu/quit" to="HUD" method="_on_quit_pressed"]
